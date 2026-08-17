@@ -3,224 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEUB Assignment Front Page - Creator</title>
+  <title>NEUB Assignment Front Page - Premium Dark Glass</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Only Cinzel font kept for the University Name, rest will use standard Times New Roman -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      /* =========================================
+         PERMANENT DARK MODE (Premium Midnight Indigo) 
+         ========================================= */
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+      
+      --glass-bg: rgba(15, 23, 42, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.25); 
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+      --glass-blur: blur(16px);
+      
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-label: #e2e8f0;
+      
+      --input-bg: rgba(0, 0, 0, 0.4);
+      --input-border: rgba(255, 255, 255, 0.3);
+      --input-focus: #818cf8;
+      
+      --badge-text: #818cf8;
+      
+      --pill-bg: rgba(0, 0, 0, 0.4);
+      --pill-hover: rgba(255, 255, 255, 0.15);
+      --pill-active-bg: linear-gradient(135deg, #6366f1, #3b82f6);
+      --pill-active-text: white;
+      
+      --subject-box-title: #818cf8;
+      --transition-speed: 0.3s;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Times New Roman', Times, serif;
-      /* Tech Agency Premium Color Grading */
-      background: linear-gradient(135deg, #0b1120 0%, #1e3a8a 50%, #0369a1 100%);
+      background: var(--bg-gradient);
       background-attachment: fixed;
-      color: #1e293b;
+      color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    input, button, select {
-      font-family: 'Times New Roman', Times, serif;
-    }
+    input, button, select { font-family: 'Times New Roman', Times, serif; }
 
     .app-container {
       display: grid;
       grid-template-columns: 460px 1fr;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    /* ========== CUSTOMIZED SIDEBAR ========== */
+    /* ========== FULL GLASS SIDEBAR ========== */
     .sidebar {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 2.5rem 2rem;
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 15px 0 50px rgba(0, 0, 0, 0.25);
-      overflow-y: auto;
-      max-height: 100vh;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 1.5rem; 
+      border-right: 1.5px solid var(--glass-border); /* Sharp Border */
+      box-shadow: var(--glass-shadow);
+      height: 100vh;
       display: flex;
       flex-direction: column;
       z-index: 10;
+      overflow-y: auto;
     }
 
-    /* Custom Scrollbar */
-    .sidebar::-webkit-scrollbar { width: 6px; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
     .sidebar::-webkit-scrollbar-track { background: transparent; }
-    .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    .sidebar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
 
-    /* Creator Badge (Moved to Top) */
+    /* ========== CREATOR BADGE (UPDATED: BIG & BOLD) ========== */
     .creator-badge {
-      margin-bottom: 1.5rem; 
-      padding: 1rem;
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      padding: 1.2rem 1rem; /* Increased padding */
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 12px;
+      border: 2px solid var(--glass-border); /* Thicker Sharp Border */
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.7); /* Deeper Shadow */
       text-align: center;
-      font-size: 1rem;
-      color: #475569;
+      font-size: 1.05rem; /* Larger sub-text */
+      font-weight: 700; /* Bold sub-text */
+      color: #e2e8f0; /* Brighter color */
     }
     .creator-badge span {
       display: block;
-      font-weight: 800; /* Bold Name */
-      color: #1e3a8a;
-      font-size: 1.25rem;
-      margin-top: 5px;
+      font-weight: 900; /* Extra Bold Name */
+      color: #a5b4fc; /* Premium light indigo color */
+      font-size: 1.6rem; /* Much Larger Name */
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(99, 102, 241, 0.5); /* Subtle Neon Glow */
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 1rem;
-    }
+    /* ========== FORM ELEMENTS ========== */
+    .form-group { margin-bottom: 0.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
     label {
       display: block;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: #334155;
-      margin-bottom: 0.5rem;
+      color: var(--text-label);
+      margin-bottom: 0.3rem;
       letter-spacing: 0.2px;
     }
 
-    input[type="text"],
-    input[type="date"] {
+    /* Glass Inputs */
+    input[type="text"], input[type="date"] {
       width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      font-size: 1rem;
+      padding: 0.5rem 0.8rem; 
+      border: 1.5px solid var(--input-border); /* Sharp Border */
+      border-radius: 8px;
+      font-size: 0.95rem;
       outline: none;
-      background: #f8fafc;
-      color: #0f172a;
-      transition: all 0.3s ease;
+      background: var(--input-bg);
+      color: var(--text-main);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      transition: all var(--transition-speed) ease;
     }
 
-    input[type="text"]:focus,
-    input[type="date"]:focus {
-      border-color: #0284c7;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    input[type="text"]:focus, input[type="date"]:focus {
+      border-color: var(--input-focus);
+      background: var(--glass-bg);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
       transform: translateY(-1px);
     }
 
-    .option-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
+    .option-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
+    /* Glass Pills */
     .option-pill {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #475569;
-      padding: 0.5rem 0.85rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      background: #ffffff;
-      transition: all 0.25s ease;
-      user-select: none;
+      display: inline-flex; align-items: center; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; color: var(--text-main);
+      padding: 0.4rem 0.65rem; border: 1.5px solid var(--glass-border); /* Sharp Border */
+      border-radius: 8px; background: var(--pill-bg);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      transition: all 0.25s ease; user-select: none;
     }
-
-    .option-pill input[type="radio"] {
-      display: none;
-    }
-
-    .option-pill:hover {
-      background: #f0f9ff;
-      border-color: #bae6fd;
-    }
-
+    .option-pill input[type="radio"] { display: none; }
+    .option-pill:hover { background: var(--pill-hover); transform: translateY(-1px); }
     .option-pill:has(input:checked) {
-      background: linear-gradient(135deg, #1e3a8a, #0284c7);
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+      background: var(--pill-active-bg); color: var(--pill-active-text);
+      border-color: transparent; box-shadow: 0 4px 12px var(--glass-shadow); transform: scale(1.02);
     }
 
-    .subject-pill {
-      font-size: 0.85rem;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
+    /* Glass Subject Box */
+    .subject-box {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--glass-border); /* Sharp Border */
+      box-shadow: var(--glass-shadow);
     }
+
+    .subject-pill { font-size: 0.8rem; padding: 0.35rem 0.6rem; }
 
     /* Action Buttons */
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn {
-      padding: 0.9rem 1.2rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-primary {
-      background: #1e3a8a;
-      color: white;
-      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
-    }
-    .btn-primary:hover { background: #1e40af; transform: translateY(-2px); }
-
-    .btn-secondary {
-      background: #0284c7;
-      color: white;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
-    }
-    .btn-secondary:hover { background: #0369a1; transform: translateY(-2px); }
+    .actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; padding-top: 15px; }
+    .btn { padding: 0.65rem; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; border: none; transition: all var(--transition-speed) ease; display: flex; align-items: center; justify-content: center; gap: 6px; }
     
-    .btn-accent {
-      background: #10b981;
-      color: white;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-    }
-    .btn-accent:hover { background: #059669; transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #cbd5e1;
-      color: #334155;
-    }
-    .btn-outline:hover { background: #f8fafc; border-color: #94a3b8; }
+    .btn-primary { background: linear-gradient(135deg, #4f46e5, #3b82f6); color: white; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6); }
+    .btn-secondary { background: linear-gradient(135deg, #0284c7, #0ea5e9); color: white; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); }
+    .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6); }
+    .btn-accent { background: linear-gradient(135deg, #059669, #10b981); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
+    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6); }
+    
+    .btn-outline { background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1.5px solid var(--glass-border); color: var(--text-main); }
+    .btn-outline:hover { background: var(--input-bg); }
 
     /* ========== PREVIEW STAGE ========== */
     .preview-stage {
-      padding: 3rem;
+      padding: 2rem;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       overflow-y: auto;
       width: 100%;
+      height: 100vh;
     }
 
     .a4-page {
@@ -229,183 +206,61 @@
       height: 297mm;
       padding: 20mm 22mm;
       background: #ffffff;
-      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       box-sizing: border-box;
       flex-shrink: 0;
-      border-radius: 3px;
+      border-radius: 2px;
+      color: #000000; /* Strict Black text for the printable page */
     }
 
-    .univ-header {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+    .univ-header { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 8px; }
+    .univ-logo { width: 190px; height: auto; max-height: 190px; object-fit: contain; margin-bottom: 12px; background: transparent; mix-blend-mode: multiply; }
+    .univ-name { font-family: 'Cinzel', serif; font-size: 20.5pt; font-weight: 800; color: #000000; letter-spacing: 1.1px; line-height: 1.25; margin-top: 2px; }
+    .univ-location { font-family: 'Times New Roman', Times, serif; font-size: 11pt; color: #333333; text-transform: uppercase; letter-spacing: 2.5px; margin-top: 5px; font-weight: 600; }
+    .univ-dept { font-family: 'Times New Roman', Times, serif; font-size: 15pt; font-weight: 700; color: #000000; margin-top: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-    .univ-logo {
-      width: 190px;
-      height: auto;
-      max-height: 190px;
-      object-fit: contain;
-      margin-bottom: 15px;
-      background: transparent;
-      mix-blend-mode: multiply;   
-    }
-
-    .univ-name {
-      font-family: 'Cinzel', serif; /* Only this one uses Cinzel */
-      font-size: 20.5pt;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 1.1px;
-      line-height: 1.25;
-      margin-top: 2px;
-    }
-
-    .univ-location {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 11pt;
-      color: #475569;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      margin-top: 5px;
-      font-weight: 600;
-    }
-
-    .topic-section {
-      text-align: center;
-      margin: 26px 0 22px;
-    }
-
-    .decor-line {
-      height: 2px;
-      background: #0f172a;
-      width: 100%;
-    }
-
+    .topic-section { text-align: center; margin: 24px 0 20px; }
+    .decor-line { height: 2px; background: #000000; width: 100%; }
     .decor-line.top { margin-bottom: 15px; }
     .decor-line.bottom { margin-top: 15px; }
+    .topic-title { font-family: 'Times New Roman', Times, serif; font-size: 19pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #000000; min-height: 28px; line-height: 1.3; }
 
-    .topic-title {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 19pt;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #000000;
-      min-height: 28px;
-      line-height: 1.3;
-    }
+    .info-grid { display: flex; flex-direction: column; gap: 15px; padding: 0 6px; }
+    .info-row { display: grid; grid-template-columns: 185px 1fr; align-items: baseline; border-bottom: 1.5px dotted #cbd5e1; padding-bottom: 6px; }
+    .info-label { font-family: 'Times New Roman', Times, serif; font-size: 14pt; font-weight: 700; color: #000000; }
+    .info-value { font-family: 'Times New Roman', Times, serif; font-size: 14pt; color: #1e293b; word-break: break-word; min-height: 20px; font-weight: 500; }
 
-    .info-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      padding: 0 6px;
-    }
+    .sheet-footer { width: 100%; margin-top: auto; padding-top: 12px; }
+    .footer-bar { height: 5px; background: linear-gradient(90deg, #1e3a8a, #059669, #dc2626); border-radius: 3px; }
 
-    .info-row {
-      display: grid;
-      grid-template-columns: 175px 1fr;
-      align-items: baseline;
-      border-bottom: 1.5px dotted #cbd5e1;
-      padding-bottom: 6px;
-    }
-
-    .info-label {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14pt;
-      font-weight: 700;
-      color: #000000;
-    }
-
-    .info-value {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14pt;
-      color: #1e293b;
-      word-break: break-word;
-      min-height: 20px;
-      font-weight: 500;
-    }
-
-    .sheet-footer {
-      width: 100%;
-      margin-top: auto;
-      padding-top: 12px;
-    }
-
-    .footer-bar {
-      height: 5px;
-      background: linear-gradient(90deg, #1e3a8a, #059669, #dc2626);
-      border-radius: 3px;
-    }
-
-    /* ========== MODERN AGENCY TOAST (POPUP) ========== */
+    /* ========== FULL GLASS TOAST (POPUP) ========== */
     .toast-container {
-      font-family: 'Times New Roman', Times, serif;
-      position: fixed;
-      top: 30px;
-      right: -400px;
-      background: #ffffff;
-      color: #1e293b;
-      padding: 16px 20px;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      z-index: 9999;
-      transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-      min-width: 320px;
-      overflow: hidden;
-      border-left: 5px solid #3b82f6;
+      font-family: 'Times New Roman', Times, serif; position: fixed; top: 30px; right: -400px;
+      background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      color: var(--text-main); padding: 16px 20px; border-radius: 12px;
+      box-shadow: var(--glass-shadow); border: 1.5px solid var(--glass-border);
+      display: flex; align-items: center; gap: 15px; z-index: 9999; 
+      transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35); min-width: 320px; overflow: hidden;
+      border-left: 5px solid #6366f1;
     }
     .toast-container.show { right: 30px; }
-    
     .toast-icon { font-size: 1.6rem; }
-    
-    .toast-content {
-      display: flex;
-      flex-direction: column;
-    }
-    .toast-title {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #0f172a;
-      margin-bottom: 2px;
-    }
-    .toast-msg {
-      font-size: 0.95rem;
-      color: #475569;
-    }
-    
-    /* Animated Progress Bar */
-    .toast-progress {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 4px;
-      background: #3b82f6;
-      width: 100%;
-    }
-    .toast-container.show .toast-progress {
-      animation: toastProgress 3.5s linear forwards;
-    }
-    @keyframes toastProgress {
-      from { width: 100%; }
-      to { width: 0%; }
-    }
+    .toast-content { display: flex; flex-direction: column; }
+    .toast-title { font-weight: 700; font-size: 1.1rem; color: var(--text-main); margin-bottom: 2px; }
+    .toast-msg { font-size: 0.95rem; color: var(--text-muted); }
+    .toast-progress { position: absolute; bottom: 0; left: 0; height: 4px; background: #6366f1; width: 100%; }
+    .toast-container.show .toast-progress { animation: toastProgress 3.5s linear forwards; }
+    @keyframes toastProgress { from { width: 100%; } to { width: 0%; } }
 
     /* ========== RESPONSIVE ========== */
     @media screen and (max-width: 1024px) {
-      .app-container { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-      .sidebar { max-height: none; border-right: none; border-bottom: 2px solid #e2e8f0; border-radius: 0; }
-      .preview-stage { padding: 2rem 1rem; overflow-x: auto; justify-content: flex-start; }
+      .app-container { grid-template-columns: 1fr; display: flex; flex-direction: column; height: auto; overflow: visible; }
+      .sidebar { height: auto; border-right: none; border-bottom: 1.5px solid var(--glass-border); }
+      .preview-stage { padding: 2rem 1rem; overflow-x: auto; justify-content: flex-start; height: auto; }
       .a4-page { transform: scale(0.8); transform-origin: top left; margin-bottom: -59mm; }
     }
     @media screen and (max-width: 768px) {
@@ -414,29 +269,24 @@
       .toast-container.show { right: 5%; }
     }
     @media screen and (max-width: 480px) {
-      .sidebar { padding: 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
       .a4-page { transform: scale(0.42); margin-bottom: -172mm; }
     }
 
     /* ========== PRINT STYLES ========== */
     @media print {
-      body { background: transparent !important; }
+      body { background: #ffffff !important; }
       .no-print { display: none !important; }
-      .app-container { display: block; }
-      .preview-stage { padding: 0; width: 100%; }
-      .a4-page {
-        box-shadow: none !important;
-        margin: 0; width: 100%; height: 100%;
-        transform: none !important; page-break-after: avoid;
-      }
+      .app-container { display: block; height: auto; overflow: visible; }
+      .preview-stage { padding: 0; width: 100%; height: auto; overflow: visible; }
+      .a4-page { box-shadow: none !important; margin: 0; width: 100%; height: 100%; transform: none !important; page-break-after: avoid; background: #ffffff !important; color: #000000 !important; }
       .univ-logo { mix-blend-mode: normal !important; }
     }
   </style>
 </head>
 <body>
   
-  <!-- Modern Agency Style Toast Notification -->
+  <!-- Glass Toast -->
   <div id="toast" class="toast-container">
     <span class="toast-icon" id="toastIcon">✅</span>
     <div class="toast-content">
@@ -447,21 +297,17 @@
   </div>
 
   <div class="app-container">
-    <!-- Left Input Panel -->
+    <!-- Left Glass Panel -->
     <aside class="sidebar no-print">
       
-      <!-- Creator Badge Moved to Top -->
+      <!-- Creator Badge -->
       <div class="creator-badge">
         Developed & Designed by
-        <span><b>Sadia Zahan Jumu</b></span>
+        <span>Sadia Zahan Jumu</span>
       </div>
 
       <form id="coverForm">
 
-        <!-- ======================= -->
-        <!-- BATCH AND DEPARTMENT -->
-        <!-- ======================= -->
-        
         <div class="form-group">
           <label>Select Department</label>
           <div class="option-group">
@@ -473,44 +319,29 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Batch</label>
-          <div class="option-group">
-            <label class="option-pill"><input type="radio" name="batchSeasonChoice" value="Spring" checked> Spring</label>
-            <label class="option-pill"><input type="radio" name="batchSeasonChoice" value="Fall"> Fall</label>
-            <label class="option-pill"><input type="radio" name="batchSeasonChoice" value="Winter"> Winter</label>
-          </div>
-        </div>
-
         <!-- ======================= -->
-
-        <!-- SELECT SUBJECT BOX (QUICK FILL) -->
-        <div class="form-group" style="background: #f0f9ff; padding: 15px; border-radius: 10px; border: 1px solid #bae6fd;">
-          <label style="color: #0369a1;">Select Subject (Quick Auto-Fill)</label>
+        <!-- QUICK FILL SUBJECTS (FULL NAMES) -->
+        <!-- ======================= -->
+        <div class="form-group subject-box">
+          <label style="color: var(--subject-box-title); margin-bottom: 8px;">Select Subject (Quick Auto-Fill)</label>
           <div class="option-group">
             <label class="option-pill subject-pill" title="Discrete Mathematics">
-              <input type="radio" name="subjectChoice" value="CSE-06131111" data-title="Discrete Mathematics" data-faculty="Mr. Pritom Paul">
-              Discrete Math
+              <input type="radio" name="subjectChoice" value="CSE-06131111" data-title="Discrete Mathematics" data-faculty="Mr. Pritom Paul"> Discrete Mathematics
             </label>
             <label class="option-pill subject-pill" title="Principles of Economics">
-              <input type="radio" name="subjectChoice" value="ECO-03113203" data-title="Principles of Economics" data-faculty="Ms. Tunajjina Akter">
-              Economics
+              <input type="radio" name="subjectChoice" value="ECO-03113203" data-title="Principles of Economics" data-faculty="Ms. Tunajjina Akter"> Principles of Economics
             </label>
             <label class="option-pill subject-pill" title="Advanced Functional English">
-              <input type="radio" name="subjectChoice" value="ENG-02321201" data-title="Advanced Functional English" data-faculty="Ms. Ahlam Binth Abdul Muhith">
-              English
+              <input type="radio" name="subjectChoice" value="ENG-02321201" data-title="Advanced Functional English" data-faculty="Ms. Ahlam Binth Abdul Muhith"> Advanced Functional English
             </label>
             <label class="option-pill subject-pill" title="Calculus">
-              <input type="radio" name="subjectChoice" value="MAT-05411101" data-title="Calculus" data-faculty="Mr. Rathindra Chandra Gope">
-              Calculus
+              <input type="radio" name="subjectChoice" value="MAT-05411101" data-title="Calculus" data-faculty="Mr. Rathindra Chandra Gope"> Calculus
             </label>
             <label class="option-pill subject-pill" title="Fundamentals of Physics">
-              <input type="radio" name="subjectChoice" value="PHY-05331201" data-title="Fundamentals of Physics" data-faculty="Mr. Muhammed Sakil Hussain">
-              Physics
+              <input type="radio" name="subjectChoice" value="PHY-05331201" data-title="Fundamentals of Physics" data-faculty="Mr. Muhammed Sakil Hussain"> Fundamentals of Physics
             </label>
             <label class="option-pill subject-pill" title="Bangladesh Studies">
-              <input type="radio" name="subjectChoice" value="SSW-03141202" data-title="Bangladesh Studies" data-faculty="Mr. Abdullah Haris Pasha">
-              BD Studies
+              <input type="radio" name="subjectChoice" value="SSW-03141202" data-title="Bangladesh Studies" data-faculty="Mr. Abdullah Haris Pasha"> Bangladesh Studies
             </label>
           </div>
         </div>
@@ -547,16 +378,24 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Submission Date</label>
-          <input type="date" id="inDate">
+        <!-- BATCH & DATE -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Batch</label>
+            <div class="option-group">
+              <label class="option-pill"><input type="radio" name="batchSeasonChoice" value="Fall-26" checked> Fall-26</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Submission Date</label>
+            <input type="date" id="inDate">
+          </div>
         </div>
 
         <div class="actions">
-          <label style="margin-bottom: -2px;">Download Formats</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <button type="button" id="downloadPngBtn" class="btn btn-primary">📸 PNG Image</button>
-            <button type="button" id="downloadJpgBtn" class="btn btn-accent">🖼️ JPG Image</button>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button type="button" id="downloadPngBtn" class="btn btn-primary">📸 PNG</button>
+            <button type="button" id="downloadJpgBtn" class="btn btn-accent">🖼️ JPG</button>
           </div>
           <button type="button" id="downloadPdfBtn" class="btn btn-secondary">📄 PDF Document</button>
           <button type="button" onclick="window.print()" class="btn btn-outline">🖨️ Direct Print</button>
@@ -568,14 +407,12 @@
     <!-- Right Live Preview -->
     <main class="preview-stage">
       <div id="pageToRender" class="a4-page">
+        
         <header class="univ-header">
-          <img src="logo.jpeg" 
-               alt="NEUB Logo" 
-               class="univ-logo" 
-               id="previewLogo">
-          
+          <img src="logo.jpeg" alt="NEUB Logo" class="univ-logo" id="previewLogo">
           <h1 class="univ-name">NORTH EAST UNIVERSITY BANGLADESH</h1>
           <p class="univ-location"><b>Sylhet, Bangladesh</b></p>
+          <h3 class="univ-dept" id="outDepartmentHeader">Department of CSE</h3>
         </header>
 
         <div class="topic-section">
@@ -585,38 +422,14 @@
         </div>
 
         <div class="info-grid">
-          <div class="info-row">
-            <span class="info-label">Student Name:</span>
-            <span class="info-value" id="outStudentName"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Student ID:</span>
-            <span class="info-value" id="outStudentID"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Course Title:</span>
-            <span class="info-value" id="outCourseTitle"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Course Code:</span>
-            <span class="info-value" id="outCourseCode"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Faculty:</span>
-            <span class="info-value" id="outFaculty"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Department:</span>
-            <span class="info-value" id="outDepartment">CSE</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Batch:</span>
-            <span class="info-value" id="outBatch">Spring</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Submission Date:</span>
-            <span class="info-value" id="outDate"></span>
-          </div>
+          <div class="info-row"><span class="info-label">Student Name:</span><span class="info-value" id="outStudentName"></span></div>
+          <div class="info-row"><span class="info-label">Student ID:</span><span class="info-value" id="outStudentID"></span></div>
+          <div class="info-row"><span class="info-label">Course Title:</span><span class="info-value" id="outCourseTitle"></span></div>
+          <div class="info-row"><span class="info-label">Course Code:</span><span class="info-value" id="outCourseCode"></span></div>
+          <div class="info-row"><span class="info-label">Faculty:</span><span class="info-value" id="outFaculty"></span></div>
+          <div class="info-row"><span class="info-label">Department:</span><span class="info-value" id="outDepartment">CSE</span></div>
+          <div class="info-row"><span class="info-label">Batch:</span><span class="info-value" id="outBatch">Fall-26</span></div>
+          <div class="info-row"><span class="info-label">Submission Date:</span><span class="info-value" id="outDate"></span></div>
         </div>
 
         <footer class="sheet-footer">
@@ -628,9 +441,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      
+
       let toastTimeout;
-      // Modern Tech Toast Controller
       function showToast(title, message, type = "success") {
         const toast = document.getElementById('toast');
         const toastTitle = document.getElementById('toastTitle');
@@ -638,25 +450,15 @@
         const toastIcon = document.getElementById('toastIcon');
         const toastProgress = document.getElementById('toastProgress');
         
-        toastTitle.innerText = title;
-        toastMsg.innerText = message;
-        
-        // Reset animation
-        toastProgress.style.animation = 'none';
-        toastProgress.offsetHeight; 
+        toastTitle.innerText = title; toastMsg.innerText = message;
+        toastProgress.style.animation = 'none'; toastProgress.offsetHeight; 
         
         if (type === "success") {
-          toastIcon.innerText = "✅";
-          toast.style.borderLeftColor = "#10b981";
-          toastProgress.style.background = "#10b981";
+          toastIcon.innerText = "✅"; toast.style.borderLeftColor = "#10b981"; toastProgress.style.background = "#10b981";
         } else if (type === "loading") {
-          toastIcon.innerText = "⏳";
-          toast.style.borderLeftColor = "#3b82f6";
-          toastProgress.style.background = "#3b82f6";
+          toastIcon.innerText = "⏳"; toast.style.borderLeftColor = "#6366f1"; toastProgress.style.background = "#6366f1";
         } else {
-          toastIcon.innerText = "❌";
-          toast.style.borderLeftColor = "#ef4444";
-          toastProgress.style.background = "#ef4444";
+          toastIcon.innerText = "❌"; toast.style.borderLeftColor = "#ef4444"; toastProgress.style.background = "#ef4444";
         }
 
         toast.classList.add('show');
@@ -670,9 +472,7 @@
         }
       }
 
-      function hideToast() {
-        document.getElementById('toast').classList.remove('show');
-      }
+      function hideToast() { document.getElementById('toast').classList.remove('show'); }
 
       const textFields = [
         { inId: 'inTopic', outId: 'outTopic' },
@@ -683,11 +483,7 @@
         { inId: 'inFaculty', outId: 'outFaculty' }
       ];
 
-      // ==========================================
-      // CORRECT BANGLADESH DATE (BST: UTC+6) SETUP
-      // ==========================================
       const bdDateOptions = { timeZone: 'Asia/Dhaka' };
-      
       const bdYear = new Intl.DateTimeFormat('en-US', { ...bdDateOptions, year: 'numeric' }).format(new Date());
       const bdMonth = new Intl.DateTimeFormat('en-US', { ...bdDateOptions, month: '2-digit' }).format(new Date());
       const bdDay = new Intl.DateTimeFormat('en-US', { ...bdDateOptions, day: '2-digit' }).format(new Date());
@@ -696,7 +492,6 @@
       const dateInput = document.getElementById('inDate');
       dateInput.value = todayISO;
 
-      // Formatting for the Preview Page
       function updatePreviewDate(dateString) {
         if(!dateString) return;
         const d = new Date(dateString);
@@ -711,7 +506,6 @@
       updatePreviewDate(todayISO);
       dateInput.addEventListener('change', (e) => updatePreviewDate(e.target.value));
 
-      // Map Other Text Inputs
       textFields.forEach(({ inId, outId }) => {
         const inputElem = document.getElementById(inId);
         const outElem = document.getElementById(outId);
@@ -722,7 +516,6 @@
         }
       });
 
-      // Quick Fill Subject
       document.querySelectorAll('input[name="subjectChoice"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
           if (e.target.checked) {
@@ -738,45 +531,39 @@
             document.getElementById('outCourseTitle').innerText = courseTitle;
             document.getElementById('outFaculty').innerText = facultyName;
 
-            showToast("Auto-Filled!", "Course details have been successfully applied.", "success");
+            showToast("Auto-Filled!", "Subject details loaded magically. ✨", "success");
           }
         });
       });
 
-      // Dept
       function updateDepartment() {
         const selected = document.querySelector('input[name="deptChoice"]:checked');
-        if (selected) document.getElementById('outDepartment').innerText = selected.value;
+        if (selected) {
+          document.getElementById('outDepartment').innerText = selected.value;
+          document.getElementById('outDepartmentHeader').innerText = "Department of " + selected.value;
+        }
       }
       document.querySelectorAll('input[name="deptChoice"]').forEach(el => el.addEventListener('change', updateDepartment));
 
-      // Batch
       function updateBatch() {
         const selectedSeason = document.querySelector('input[name="batchSeasonChoice"]:checked');
-        const season = selectedSeason ? selectedSeason.value : '';
-
+        let season = selectedSeason ? selectedSeason.value : '';
         document.getElementById('outBatch').innerText = season;
       }
       document.querySelectorAll('input[name="batchSeasonChoice"]').forEach(el => el.addEventListener('change', updateBatch));
-
+      
       updateDepartment();
       updateBatch();
 
-      // Reliable Capture Function
       async function capturePage(scaleMultiplier = 3) {
         window.scrollTo(0, 0);
         const pageElement = document.getElementById('pageToRender');
-        
         const originalTransform = pageElement.style.transform;
         pageElement.style.transform = 'none';
 
         try {
           const canvas = await html2canvas(pageElement, {
-            scale: scaleMultiplier, 
-            useCORS: true,
-            allowTaint: false,
-            logging: false,
-            backgroundColor: '#ffffff'
+            scale: scaleMultiplier, useCORS: true, allowTaint: false, logging: false, backgroundColor: '#ffffff'
           });
           return canvas;
         } finally {
@@ -784,16 +571,14 @@
         }
       }
 
-      // Download Handler
       async function handleDownload(format) {
         const btnId = format === 'PDF' ? 'downloadPdfBtn' : (format === 'PNG' ? 'downloadPngBtn' : 'downloadJpgBtn');
         const btn = document.getElementById(btnId);
         const originalText = btn.innerHTML;
         const stdId = document.getElementById('inStudentID').value.trim() || 'Assignment';
         
-        btn.innerHTML = '⏳ Processing...';
-        btn.disabled = true;
-        showToast("Processing...", `Generating high-quality ${format} file.`, "loading");
+        btn.innerHTML = '⏳ Processing...'; btn.disabled = true;
+        showToast("Processing...", `Generating your ${format} file...`, "loading");
 
         try {
           const canvas = await capturePage(3);
@@ -815,18 +600,12 @@
             link.click();
           }
 
-          hideToast();
-          setTimeout(() => showToast("Success!", `${format} Downloaded Successfully!`, "success"), 200);
-
+          hideToast(); setTimeout(() => showToast("Success!", `File Downloaded Successfully! 🚀`, "success"), 200);
         } catch (err) {
-          console.error(`${format} Download Error:`, err);
-          hideToast();
-          setTimeout(() => {
-            showToast("Error!", `Failed to generate document. Please try running in a Local Server.`, "error");
-          }, 200);
+          console.error(`${format} Error:`, err); hideToast();
+          setTimeout(() => showToast("Error!", `Failed to generate document. Ensure local server is running.`, "error"), 200);
         } finally {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
+          btn.innerHTML = originalText; btn.disabled = false;
         }
       }
 
